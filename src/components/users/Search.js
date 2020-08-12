@@ -1,10 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Search extends React.Component {
   // attach state to the input
   // from input will be component level state
   state = {
     text: ''
+  }
+
+  static propTypes = {
+    searchUsers: PropTypes.func.isRequired,
+    clearUsers: PropTypes.func.isRequired,
+    showClearBtn: PropTypes.bool.isRequired
   }
 
   onSubmit = (e) => {
@@ -38,6 +45,7 @@ class Search extends React.Component {
             className='btn btn-dark btn-block'
           />
         </form>
+        {this.props.showClearBtn ? <button className='btn btn-light btn-block' onClick={this.props.clearUsers} >Clear</button> : null}
       </div>
     )
   }

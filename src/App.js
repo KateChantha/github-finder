@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
@@ -12,10 +11,6 @@ class App extends React.Component {
   state = {
     users: [],
     loading: false
-  }
-
-  static propTypes = {
-    searchUsers: PropTypes.func.isRequired
   }
 
   // ======= fetch initail users when page is loaded ========
@@ -40,12 +35,20 @@ class App extends React.Component {
     this.setState({ users: res.data.items, loading: false })
   }
 
+  /**
+   * @desc call from onClick btn in Search component
+   */
+  clearUsers = () => this.setState({ users: [], loading: false })
+
+
+
   render() {
+
     return (
       <div className='App'>
         <Navbar title='Github Finder' icon='fab fa-github' />
         <div className='container'>
-          <Search searchUsers={this.searchUsers} />
+          <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} showClearBtn={this.state.users.length > 0 ? true : false} />
           <Users loading={this.state.loading} users={this.state.users} />
         </div>
       </div>
