@@ -9,7 +9,10 @@ class Search extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.text)
+    // called searchUser in parent--App.js
+    this.props.searchUsers(this.state.text);
+    // clear search feild after submit
+    this.setState({ text: '' });
   }
 
   onChange = (e) => {
