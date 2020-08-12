@@ -30,6 +30,7 @@ class Search extends React.Component {
   }
 
   render() {
+    const { showClearBtn, clearUsers } = this.props
     return (
       <div>
         <form onSubmit={this.onSubmit} className='form'>
@@ -45,7 +46,7 @@ class Search extends React.Component {
             className='btn btn-dark btn-block'
           />
         </form>
-        {this.props.showClearBtn ? <button className='btn btn-light btn-block' onClick={this.props.clearUsers} >Clear</button> : null}
+        {showClearBtn && <button className='btn btn-light btn-block' onClick={clearUsers} >Clear</button>}
       </div>
     )
   }
