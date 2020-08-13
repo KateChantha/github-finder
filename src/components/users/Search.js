@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Search = ({ searchUsers, showClearBtn, clearUsers, setAlert }) => {
+const Search = ({ searchUsers, showClearBtn, clearUsers, showAlert }) => {
   const [text, setText] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (text === '') {
       // call setAlert in parent--App.js and pass in class='light'
-      setAlert('Please enter valid user name', 'light')
+      showAlert('Please enter valid user name', 'light')
     } else {
       // call searchUser in parent--App.js
       searchUsers(text);
@@ -46,7 +46,7 @@ Search.propTypes = {
   searchUsers: PropTypes.func.isRequired,
   clearUsers: PropTypes.func.isRequired,
   showClearBtn: PropTypes.bool.isRequired,
-  setAlert: PropTypes.func.isRequired
+  showAlert: PropTypes.func.isRequired
 }
 
 export default Search;
