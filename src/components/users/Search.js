@@ -18,10 +18,10 @@ class Search extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     if (this.state.text === '') {
-      // call setAlert and pass in class='light'
+      // call setAlert in parent--App.js and pass in class='light'
       this.props.setAlert('Please enter valid user name', 'light')
     } else {
-      // called searchUser in parent--App.js
+      // call searchUser in parent--App.js
       this.props.searchUsers(this.state.text);
       // clear search feild after submit
       this.setState({ text: '' });
