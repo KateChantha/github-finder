@@ -6,10 +6,7 @@ import RepoItem from './RepoItem';
  * @param props - {repos} 
  */
 const Repos = ({ repos }) => {
-  console.log('In Repos-repos:', repos)
-  // return (
-  //   <div>THIS is Repos</div>
-  // )
+
   return repos.map(repo => <RepoItem key={repo.id} repo={repo} />)
 }
 
