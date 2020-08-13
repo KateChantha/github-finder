@@ -11,15 +11,22 @@ class Search extends React.Component {
   static propTypes = {
     searchUsers: PropTypes.func.isRequired,
     clearUsers: PropTypes.func.isRequired,
-    showClearBtn: PropTypes.bool.isRequired
+    showClearBtn: PropTypes.bool.isRequired,
+    setAlert: PropTypes.func.isRequired
   }
 
   onSubmit = (e) => {
     e.preventDefault();
-    // called searchUser in parent--App.js
-    this.props.searchUsers(this.state.text);
-    // clear search feild after submit
-    this.setState({ text: '' });
+    if (this.state.text === '') {
+      // call setAlert and pass in class='light'
+      this.props.setAlert('Please enter valid user name', 'light')
+    } else {
+      // called searchUser in parent--App.js
+      this.props.searchUsers(this.state.text);
+      // clear search feild after submit
+      this.setState({ text: '' });
+    }
+
   }
 
   onChange = (e) => {
