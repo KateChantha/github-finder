@@ -16,8 +16,10 @@ class App extends React.Component {
   state = {
     users: [],
     user: {},
+    repos: [],
     loading: false,
     alert: null
+
   }
 
   // ======= fetch initail users when page is loaded ========
@@ -58,6 +60,21 @@ class App extends React.Component {
   }
 
   /**
+   * Get a user repos
+   * @desc endpiont at /${username}/repos
+   * @request-> username 
+   * @response-> res.data 
+   */
+  getUserRepos = async (username) => {
+    // load spinner
+    this.setState({ loading: true })
+
+    const res = await axios.get(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+
+    this.setState({ repos: res.data, loading: false })
+  }
+
+  /**
    * @desc call from onClick btn in Search component
    */
   clearUsers = () => this.setState({ users: [], loading: false })
@@ -70,7 +87,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { users, user, loading, alert } = this.state
+    const { users, user, repos, loading, alert } = this.state
     return (
       <BrowserRouter>
         <div className='App'>
@@ -95,7 +112,14 @@ class App extends React.Component {
               <Route
                 exact path='/user/:login'
                 render={props => (
-                  <User {...props} getUser={this.getUser} user={user} loading={loading} />
+                  <User
+                    {...props}
+                    getUser={this.getUser}
+                    getUserRepos={this.getUserRepos}
+                    user={user}
+                    repos={repos}
+                    loading={loading}
+                  />
                 )} />
             </Switch>
           </div>
