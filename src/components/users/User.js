@@ -15,7 +15,7 @@ const User = ({ user, loading, repos, getUser, getUserRepos, match }) => {
     )} /> 
     */
 
-  // replace componentdidMount using useEffect hook. 
+  //<--- replace componentdidMount using useEffect hook.--> 
   // Have to pass in [] as 2nd argument to stop the on going update loop -- so it will run only once 
   useEffect(() => {
     getUser(match.params.login);
