@@ -1,4 +1,4 @@
-import React, { userReducer } from 'react';
+import React, { useReducer } from 'react';
 import axios from 'axios';
 import GithubContext from './githubContext';
 import GithubReducer from './githubReducer';
@@ -13,7 +13,7 @@ import {
 
 const GithubState = props => {
   // initalize global state for github related
-  const initailState = {
+  const initialState = {
     users: [],
     user: {},
     repos: [],
