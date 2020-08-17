@@ -23,6 +23,7 @@ const App = () => {
   }
   */
 
+  // ===== REFACTOR =========
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({});
   const [repos, setRepos] = useState([]);
