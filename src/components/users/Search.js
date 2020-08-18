@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import GithubContext from '../../context/github/githubContext';
 
-const Search = ({ searchUsers, showClearBtn, clearUsers, showAlert }) => {
+
+const Search = ({ showClearBtn, clearUsers, showAlert }) => {
+  const githubContext = useContext(GithubContext);
+
   const [text, setText] = useState('');
 
   const onSubmit = (e) => {
@@ -10,8 +14,8 @@ const Search = ({ searchUsers, showClearBtn, clearUsers, showAlert }) => {
       // call setAlert in parent--App.js and pass in class='light'
       showAlert('Please enter valid user name', 'light')
     } else {
-      // call searchUser in parent--App.js
-      searchUsers(text);
+      // call searchUser in GithubState.js
+      githubContext.searchUsers(text);
       // clear search feild after submit
       setText('');
     }
@@ -43,7 +47,6 @@ const Search = ({ searchUsers, showClearBtn, clearUsers, showAlert }) => {
 }
 
 Search.propTypes = {
-  searchUsers: PropTypes.func.isRequired,
   clearUsers: PropTypes.func.isRequired,
   showClearBtn: PropTypes.bool.isRequired,
   showAlert: PropTypes.func.isRequired

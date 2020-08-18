@@ -31,21 +31,21 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
 
-  /**
-   * @desc endpiont at /search/users?q=${text}
-   * @request-> text ; search 'text' submit call query to github api 
-   * @response-> res.data.items
-   */
-  const searchUsers = async (text) => {
-    // load spinner
-    setLoading(true);
+  // /**
+  //  * @desc endpiont at /search/users?q=${text}
+  //  * @request-> text ; search 'text' submit call query to github api 
+  //  * @response-> res.data.items
+  //  */
+  // const searchUsers = async (text) => {
+  //   // load spinner
+  //   setLoading(true);
 
-    const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+  //   const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
 
-    // this.setState({ users: res.data.items, loading: false })
-    setUsers(res.data.items);
-    setLoading(false);
-  }
+  //   // this.setState({ users: res.data.items, loading: false })
+  //   setUsers(res.data.items);
+  //   setLoading(false);
+  // }
 
   /**
    * Get a user
@@ -112,7 +112,7 @@ const App = () => {
                 exact path='/' render={props => (
                   <Fragment>
                     <Search
-                      searchUsers={searchUsers}
+
                       clearUsers={clearUsers}
                       showClearBtn={users.length > 0 ? true : false}
                       showAlert={showAlert}
